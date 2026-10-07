@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 質問・要望（Discussions）
+    url: https://github.com/takuho0115/sysfail/discussions
+    about: 遊び方の質問や機能の要望はこちらへ

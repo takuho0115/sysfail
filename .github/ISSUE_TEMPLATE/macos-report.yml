@@ -1,0 +1,82 @@
+name: macOS の動作報告
+description: macOS（検証中・プレビュー）で sysfail を動かした結果。うまくいった場合の報告も歓迎します
+title: "[macOS] "
+labels: [macos]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        macOS は検証中（プレビュー）です。実機の Mac での結果が、保証を始めるための材料になります。
+        秘密（トークン・パスワード）や、ホームディレクトリの中身は貼らないでください。ユーザー名やホスト名は伏せてかまいません。
+        導入（tap・install.sh・手での取得）そのものの問題は「macOS での導入・起動の問題」のテンプレートを使ってください。
+  - type: dropdown
+    id: outcome
+    attributes:
+      label: 結果
+      options:
+        - 問題なく遊べた
+        - 遊べたが気になる点がある
+        - 起動できない・途中で止まる
+    validations:
+      required: true
+  - type: input
+    id: sysfail-version
+    attributes:
+      label: sysfail のバージョン（`sysfail --version` の出力）
+      placeholder: sysfail version v1.0.0
+    validations:
+      required: true
+  - type: input
+    id: macos-version
+    attributes:
+      label: macOS のバージョン（`sw_vers` の ProductVersion）
+      placeholder: "15.7"
+    validations:
+      required: true
+  - type: dropdown
+    id: chip
+    attributes:
+      label: Mac のチップ
+      options:
+        - Apple Silicon（M1 以降）
+        - Intel
+    validations:
+      required: true
+  - type: dropdown
+    id: runtime
+    attributes:
+      label: docker の実行環境
+      options:
+        - colima
+        - Docker Desktop
+        - OrbStack
+        - Rancher Desktop
+        - その他
+    validations:
+      required: true
+  - type: textarea
+    id: colima
+    attributes:
+      label: colima と Lima のバージョン、起動の引数
+      description: "`colima version` と `limactl --version` の出力、`colima start` に付けた引数（colima 以外なら空でかまいません）"
+      render: text
+  - type: textarea
+    id: doctor
+    attributes:
+      label: sysfail doctor の出力
+      description: "`sysfail doctor` の出力をそのまま貼ってください（先頭の「保証範囲」の行と注記を含めて）"
+      render: text
+    validations:
+      required: true
+  - type: input
+    id: levels
+    attributes:
+      label: 遊んだレベル
+      placeholder: L001, L005
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: 起きたこと
+      description: 表示された文言はそのまま書いてください。止まった場合は、そのときの操作と表示を書いてください
+    validations:
+      required: true

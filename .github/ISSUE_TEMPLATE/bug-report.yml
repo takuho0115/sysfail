@@ -1,0 +1,68 @@
+name: 不具合の報告
+description: Linux・WSL2・Windows ランチャーで起きた不具合（macOS は専用のテンプレートを使ってください）
+title: "[不具合] "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        秘密（トークン・パスワード）や、ホームディレクトリの中身は貼らないでください。ユーザー名やホスト名は伏せてかまいません。
+        macOS で起きたことは「macOS の動作報告」か「macOS での導入・起動の問題」のテンプレートを使ってください。
+  - type: dropdown
+    id: os
+    attributes:
+      label: OS と遊び方
+      options:
+        - Linux（ネイティブ）
+        - WSL2（ディストロの中で sysfail を実行）
+        - Windows（sysfail.exe ランチャー）
+        - その他（dind・DooD など。下の欄に書いてください）
+    validations:
+      required: true
+  - type: input
+    id: os-version
+    attributes:
+      label: OS のバージョン
+      description: "Linux・WSL2 は /etc/os-release の PRETTY_NAME と `uname -r`、Windows は `winver` の版と `wsl --version` の出力"
+      placeholder: Ubuntu 24.04.1 LTS / 6.8.0-45-generic
+    validations:
+      required: true
+  - type: input
+    id: sysfail-version
+    attributes:
+      label: sysfail のバージョン（`sysfail --version` の出力）
+      placeholder: sysfail version v1.0.0
+    validations:
+      required: true
+  - type: textarea
+    id: doctor
+    attributes:
+      label: sysfail doctor の出力
+      description: "`sysfail doctor`（ランチャーでは `.\\sysfail.exe doctor`）の出力をそのまま貼ってください"
+      render: text
+    validations:
+      required: true
+  - type: input
+    id: level
+    attributes:
+      label: レベル
+      description: 特定のレベルで起きた場合はその番号。--edu で遊んでいた場合はそれも書いてください
+      placeholder: L005（--edu）
+  - type: textarea
+    id: steps
+    attributes:
+      label: 再現の手順
+      description: 実行したコマンドと操作を、順に書いてください
+      placeholder: |
+        1. sysfail 5 を実行
+        2. 左ペインで ssh web01
+        3. ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected-actual
+    attributes:
+      label: 期待したことと、実際に起きたこと
+      description: 表示されたエラーの文言は、そのまま貼ってください
+    validations:
+      required: true
