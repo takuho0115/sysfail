@@ -354,7 +354,9 @@ printf '%s\n' sch_netem sch_tbf sch_htb cls_u32 ip_tables iptable_filter xt_TCPM
 
 modprobe が `nft_meta` や `nft_exthdr` について「Module not found」と表示したら、その 2 つを除いて実行し直してください（カーネルによっては `nf_tables` に含まれています）。
 
-## 配布物が本物か確かめる
+<a id="配布物の検証必須"></a>
+
+## 配布物が本物か確かめる（配布物の検証）
 
 ダウンロードしたファイルが作者の作った本物で、途中で書き換えられていないことを確かめる手順です。必須ではありませんが、実行する前に行うことを強くおすすめします。
 
