@@ -5,4 +5,4 @@
 このリポジトリは配布用です。ソースコードは公開していません。実行ファイルは [Releases](../../releases) から入手してください。
 
 - 不具合の報告や要望は [Issues](../../issues) へお願いします。
-- All rights reserved. 著作権はすべて作者に帰属します（[LICENSE.md](LICENSE.md)）。
+- All rights reserved. 配布はこのリポジトリでの一次配布に限り、再配布（二次配布）は禁止です（[LICENSE.md](LICENSE.md)）。
