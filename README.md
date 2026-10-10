@@ -37,7 +37,7 @@ sysfail をコンテナの中で動かす構成にも対応していますが、
 
 ## インストール
 
-Releases の各バージョンには、次の 9 ファイルが添付されています。
+Releases の各バージョンには、次の 10 ファイルが添付されています（v1.1.0 以降。v1.0.x は `custom-levels-kit.tar.gz` を除く 9 ファイル）。
 
 | ファイル | 内容 |
 |---|---|
@@ -47,6 +47,7 @@ Releases の各バージョンには、次の 9 ファイルが添付されて�
 | `sysfail-windows-amd64.exe` | Windows 用ランチャー（同じバージョンの `sysfail-linux-amd64` と組で使います） |
 | `THIRD_PARTY_NOTICES.txt` | 実行ファイルに組み込んだ他者のソフトウェアの著作権表示とライセンス文 |
 | `LICENSE.md` | 利用条件 |
+| `custom-levels-kit.tar.gz` | カスタムステージを作るためのキット（雛形と書式の説明。v1.1.0 以降） |
 | `SHA256SUMS` | 各ファイルの SHA-256（ファイルが改ざんされていないかを調べるための値） |
 | `SHA256SUMS.sigstore.json` | `SHA256SUMS` に対する作者の電子署名 |
 
@@ -55,7 +56,7 @@ Releases の各バージョンには、次の 9 ファイルが添付されて�
 ### Linux / WSL2
 
 ```bash
-TAG=v1.0.0          # 入れたいバージョン
+TAG=v1.1.0          # 入れたいバージョン
 ARCH=amd64          # ARM の端末では arm64
 BASE=https://github.com/takuho0115/sysfail/releases/download/$TAG
 wget "$BASE/sysfail-linux-$ARCH" "$BASE/LICENSE.md" "$BASE/SHA256SUMS" "$BASE/SHA256SUMS.sigstore.json"
@@ -89,7 +90,7 @@ Docker Desktop の WSL 連携でも、ディストロの中から `docker` コ�
 1. ディストロの中で 2 ファイルをダウンロードします。[配布物が本物か確かめる](#配布物が本物か確かめる)の手順（`ARCH=amd64`）で、2 ファイルとも `OK` になることを確かめてください。
 
    ```bash
-   TAG=v1.0.0
+   TAG=v1.1.0
    BASE=https://github.com/takuho0115/sysfail/releases/download/$TAG
    wget "$BASE/sysfail-linux-amd64" "$BASE/sysfail-windows-amd64.exe" "$BASE/SHA256SUMS" "$BASE/SHA256SUMS.sigstore.json"
    ```
@@ -189,7 +190,7 @@ sysfail doctor
 
 macOS 用の配布物は `sysfail-darwin-arm64` だけです。Apple の公証（Apple による安全確認）は受けていないので、本物かどうかは cosign と SHA256SUMS で確かめます（詳しくは[配布物が本物か確かめる](#配布物が本物か確かめる)）。
 
-おすすめは次の 2 つです。どちらも、取得したファイルを自動で確かめます。Homebrew tap は v1.0.0 の公開と確認が済んでから用意します。それまでは「おすすめ 2」か「手で取得する場合」を使ってください。
+おすすめは次の 2 つです。どちらも、取得したファイルを自動で確かめます。Homebrew tap は準備中です。それまでは「おすすめ 2」か「手で取得する場合」を使ってください。
 
 ##### おすすめ 1: Homebrew tap
 
@@ -205,7 +206,7 @@ sysfail --version
 取得・確認・中身を読む・実行、を一つずつ分けて行います（ダウンロードした内容をそのままシェルに渡す 1 行の手順は用意していません）。
 
 ```bash
-TAG=v1.0.0   # 入れたいバージョン
+TAG=v1.1.0   # 入れたいバージョン
 BASE=https://github.com/takuho0115/sysfail/releases/download/$TAG
 curl -fsSLO "$BASE/install.sh"
 curl -fsSLO "$BASE/SHA256SUMS"
@@ -230,7 +231,7 @@ install.sh は、署名とハッシュの確認が両方通ったときだけ sy
 上の 2 つが使えない場合の手順です。手順 1・2 を必ずこの順で行い、両方とも通ったときだけ手順 4 に進んでください。
 
 ```bash
-TAG=v1.0.0
+TAG=v1.1.0
 BASE=https://github.com/takuho0115/sysfail/releases/download/$TAG
 curl -fsSLO "$BASE/sysfail-darwin-arm64"
 curl -fsSLO "$BASE/SHA256SUMS"
