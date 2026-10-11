@@ -77,17 +77,17 @@ sudo mv "sysfail-linux-$ARCH" /usr/local/bin/sysfail
 #### 必要なもの
 
 - **Windows**: Windows 10 / 11（amd64）
-- **WSL2**: PowerShell で `wsl --version` を実行してバージョンが表示されること（表示されない古い WSL は `wsl --update` で更新します）。使う Linux（ディストロ）が `wsl --list --verbose` で VERSION 2 になっていること
-- **ディストロ**: Linux amd64。中に Docker Engine と docker compose v2 プラグインを入れます（バージョンの条件は[動作環境](#動作環境)と同じです）。tmux は要りません
+- **WSL2**: PowerShell で `wsl --version` を実行してバージョンが表示されること（表示されない古い WSL は `wsl --update` で更新します）。使う Linux（ディストリビューション）が `wsl --list --verbose` で VERSION 2 になっていること
+- **ディストリビューション**: Linux amd64。中に Docker Engine と docker compose v2 プラグインを入れます（バージョンの条件は[動作環境](#動作環境)と同じです）。tmux は要りません
 - **Windows Terminal**（`wt.exe`）: 無くても遊べます。その場合はコンソール画面 2 つで開きます
 
-Docker Desktop の WSL 連携でも、ディストロの中から `docker` コマンドが使えれば起動します。ただし動作の保証はなく、`doctor` が警告を出します。保証するのは、ディストロの中に直接入れた Docker Engine だけです。
+Docker Desktop の WSL 連携でも、ディストリビューションの中から `docker` コマンドが使えれば起動します。ただし動作の保証はなく、`doctor` が警告を出します。保証するのは、ディストリビューションの中に直接入れた Docker Engine だけです。
 
 #### 入れ方
 
 `sysfail.exe` には、同じバージョンの `sysfail-linux-amd64` の SHA-256 が埋め込まれています。起動のたびにこれを照合し、一致しなければ起動しません。2 つは必ず同じバージョンのものを使い、片方を更新したらもう片方も入れ替えてください。
 
-1. ディストロの中で 2 ファイルをダウンロードします。[配布物が本物か確かめる](#配布物が本物か確かめる)の手順（`ARCH=amd64`）で、2 ファイルとも `OK` になることを確かめてください。
+1. ディストリビューションの中で 2 ファイルをダウンロードします。[配布物が本物か確かめる](#配布物が本物か確かめる)の手順（`ARCH=amd64`）で、2 ファイルとも `OK` になることを確かめてください。
 
    ```bash
    TAG=v1.1.0
@@ -95,7 +95,7 @@ Docker Desktop の WSL 連携でも、ディストロの中から `docker` コ�
    wget "$BASE/sysfail-linux-amd64" "$BASE/sysfail-windows-amd64.exe" "$BASE/SHA256SUMS" "$BASE/SHA256SUMS.sigstore.json"
    ```
 
-2. ディストロの中に Linux 版を置きます。ランチャーは安全のため、Linux 版とその置き場所が root の持ち物で、ほかのユーザーが書き換えられないことを確かめます。`mv` だと持ち主が自分のままになるので、`install` を使ってください。
+2. ディストリビューションの中に Linux 版を置きます。ランチャーは安全のため、Linux 版とその置き場所が root の持ち物で、ほかのユーザーが書き換えられないことを確かめます。`mv` だと持ち主が自分のままになるので、`install` を使ってください。
 
    ```bash
    sudo install -o root -g root -m 0755 sysfail-linux-amd64 /usr/local/bin/sysfail
@@ -123,12 +123,12 @@ Docker Desktop の WSL 連携でも、ディストロの中から `docker` コ�
 .\sysfail.exe                           # レベル選択画面から始める
 .\sysfail.exe --console 3               # Windows Terminal を使わず、コンソール画面 2 つで開く
 .\sysfail.exe stop                      # ゲームを止めて環境を片付ける
-.\sysfail.exe --distro Ubuntu-24.04 3   # 既定以外のディストロを使う
+.\sysfail.exe --distro Ubuntu-24.04 3   # 既定以外のディストリビューションを使う
 ```
 
 - ゲームは Windows Terminal の新しいウィンドウに、「司令画面」と「作業シェル」の 2 つのタブで開きます。
 - `--console` を付けると、司令画面を今のコンソールで、作業シェルを新しいコンソールで開きます。
-- `--distro` を省くと、WSL の既定のディストロ（`wsl --list --verbose` で `*` が付いたもの）を使います。既定のディストロが無い場合や WSL1 の場合は起動しません。
+- `--distro` を省くと、WSL の既定のディストリビューション（`wsl --list --verbose` で `*` が付いたもの）を使います。既定のディストリビューションが無い場合や WSL1 の場合は起動しません。
 - `list`・`--edu` など、Linux 版のコマンドやオプションも使えます。ランチャー自身のオプション（`--distro`・`--console`・`--linux-path`）はコマンドより前に置きます。Linux 版のオプションを先頭に置くときは `--` で区切ります（例: `.\sysfail.exe -- --assets-dir /opt/sysfail-assets 3`）。
 - 司令画面で `q` を押すと、環境を片付けて終わります。作業シェルのタブは残るので、手で閉じてください。途中で画面を閉じてしまった場合は、両方を閉じて `.\sysfail.exe stop` を実行してから起動し直してください。
 
@@ -141,8 +141,8 @@ Docker Desktop の WSL 連携でも、ディストロの中から `docker` コ�
 
 #### Windows での制限
 
-- クリア状況やログは、WSL のディストロの既定ユーザーのホームに保存します。Windows 側には保存しません。ディストロを変えると、記録も別になります。
-- 2 つの画面とも、ディストロの既定ユーザーで動きます。`--assets-dir` などに渡すパスも WSL 側のパスで書きます。
+- クリア状況やログは、WSL のディストリビューションの既定ユーザーのホームに保存します。Windows 側には保存しません。ディストリビューションを変えると、記録も別になります。
+- 2 つの画面とも、ディストリビューションの既定ユーザーで動きます。`--assets-dir` などに渡すパスも WSL 側のパスで書きます。
 - ランチャーはシェルを通さずに Linux 版を起動するため、`~/.bashrc` などで設定した環境変数は効きません。
 - tmux の一時離脱・再開（デタッチ・アタッチ）と、arm64 の Windows には対応していません。
 - ゲーム環境の隔離は WSL2 の中の Docker が担います。ランチャーが Windows 側で隔離を追加するわけではありません。
