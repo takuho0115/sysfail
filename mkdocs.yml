@@ -1,0 +1,67 @@
+# User-facing site for sysfail, built by .github/workflows/pages.yml.
+# docs/ja and docs/en/guides are generated in the source repository by
+# scripts/export-public-docs.sh (allow-listed user docs only); do not edit them here.
+# docs/index.md includes README.md, so the README stays the single copy.
+site_name: sysfail
+site_description: Linux の障害対応を練習するゲーム sysfail のドキュメント
+site_url: https://takuho0115.github.io/sysfail/
+repo_url: https://github.com/takuho0115/sysfail
+repo_name: takuho0115/sysfail
+edit_uri: ""
+copyright: "&copy; takuho0115"
+
+theme:
+  name: material
+  language: ja
+  features:
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - content.code.copy
+    - search.suggest
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: ダークモードに切り替え
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: ライトモードに切り替え
+
+plugins:
+  - search:
+      lang: [ja, en]
+
+markdown_extensions:
+  - admonition
+  - tables
+  - attr_list
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.snippets:
+      base_path: ["."]
+      check_paths: true
+  - toc:
+      permalink: true
+      # Keep Japanese heading anchors the same as GitHub's, so README links work on both.
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+
+validation:
+  links:
+    anchors: warn
+    unrecognized_links: warn
+
+nav:
+  - ホーム: index.md
+  - 日本語:
+      - レベル別ガイド: ja/guides/index.md
+      - 自作ステージの作り方: ja/custom-levels.md
+  - English:
+      - en/index.md
+      - Level guides: en/guides/index.md
+      - Custom levels (Japanese only): ja/custom-levels.md
