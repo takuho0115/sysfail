@@ -1,5 +1,5 @@
 # User-facing site for sysfail, built by .github/workflows/pages.yml.
-# docs/ja and docs/en/guides are generated in the source repository by
+# docs/ja/guides, docs/ja/custom-levels and docs/en/guides are generated in the source repository by
 # scripts/export-public-docs.sh (allow-listed user docs only); do not edit them here.
 # docs/index.md includes README.md, so the README stays the single copy.
 site_name: sysfail
@@ -59,9 +59,31 @@ validation:
 nav:
   - ホーム: index.md
   - 日本語:
+      - 動作環境: ja/requirements.md
+      - インストール:
+          - ja/install/index.md
+          - Linux / WSL2: ja/install/linux.md
+          - Windows: ja/install/windows.md
+          - macOS（Apple Silicon）: ja/install/macos.md
+      - 配布物が本物か確かめる: ja/verify.md
+      - 遊び方: ja/play.md
+      - 困ったとき: ja/troubleshooting.md
       - レベル別ガイド: ja/guides/index.md
-      - 自作ステージの作り方: ja/custom-levels.md
+      - 自作ステージの作り方:
+          - ja/custom-levels/index.md
+          - 1. まずサンプルを動かす: ja/custom-levels/01-sample.md
+          - 2. ステージの骨組み: ja/custom-levels/02-structure.md
+          - 3. level.yaml を書く: ja/custom-levels/03-level-yaml.md
+          - 4. 検証して遊ぶ: ja/custom-levels/04-check-and-play.md
+          - 5. 他人が作ったステージを遊ぶときの注意: ja/custom-levels/05-others-levels.md
+          - 6. 成功条件（goals）の種類: ja/custom-levels/06-goals.md
+          - 7. ヒントの書き方: ja/custom-levels/07-hints.md
+          - 8. 模範解答と解説: ja/custom-levels/08-solution.md
+          - 9. 最終確認とその場しのぎの検査: ja/custom-levels/09-challenge.md
+          - 10. level.yaml の全項目: ja/custom-levels/10-reference.md
+          - 11. よくある失敗: ja/custom-levels/11-pitfalls.md
+          - 用語: ja/custom-levels/12-glossary.md
   - English:
       - en/index.md
       - Level guides: en/guides/index.md
-      - Custom levels (Japanese only): ja/custom-levels.md
+      - Custom levels (Japanese only): ja/custom-levels/index.md
