@@ -15,7 +15,7 @@ sysfail は、サーバー障害の対応をターミナルで練習するゲー
 | [動作環境](https://takuho0115.github.io/sysfail/ja/requirements/) | 必要な OS・Docker・docker compose・tmux のバージョン |
 | [インストール](https://takuho0115.github.io/sysfail/ja/install/) | Releases に添付しているファイルと、OS ごとの入れ方の案内 |
 | [Linux / WSL2](https://takuho0115.github.io/sysfail/ja/install/linux/) | Linux 版の入れ方 |
-| [Windows](https://takuho0115.github.io/sysfail/ja/install/windows/) | WSL2 の中の sysfail を起動するランチャー `sysfail.exe` の入れ方と使い方 |
+| [Windows](https://takuho0115.github.io/sysfail/ja/install/windows/) | 検証中のプレビュー。WSL2 の中の sysfail を起動するランチャー `sysfail.exe` の入れ方と使い方 |
 | [macOS（Apple Silicon）](https://takuho0115.github.io/sysfail/ja/install/macos/) | 検証中のプレビュー版の入れ方と、colima の推奨設定 |
 | [配布物が本物か確かめる](https://takuho0115.github.io/sysfail/ja/verify/) | cosign と SHA256SUMS で、ダウンロードしたファイルを確かめる手順 |
 | [遊び方](https://takuho0115.github.io/sysfail/ja/play/) | はじめての遊び方と、教育版の遊び方 |
