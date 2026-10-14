@@ -54,10 +54,10 @@ sysfail --version
 
 ### おすすめ 2: install.sh
 
-取得・確認・中身を読む・実行、を一つずつ分けて行います（ダウンロードした内容をそのままシェルに渡す 1 行の手順は用意していません）。
+取得、確認、中身を読む、実行の 4 つを分けて行います（ダウンロードした内容をそのままシェルに渡す 1 行の手順は用意していません）。
 
 ```bash
-TAG=v1.1.0   # 入れたいバージョン
+TAG=v1.2.3   # 入れたいバージョン
 BASE=https://github.com/takuho0115/sysfail/releases/download/$TAG
 curl -fsSLO "$BASE/install.sh"
 curl -fsSLO "$BASE/SHA256SUMS"
@@ -77,12 +77,14 @@ sh install.sh
 
 install.sh は、署名とハッシュの確認が両方通ったときだけ sysfail を置きます。管理者の権限は使いません。`--prefix` に指定できるのは、すでに存在し、自分が持ち主で、シンボリックリンクではないフォルダだけです。すでに `sysfail` という名前のファイルがある場合は、それが sysfail のときだけ置き換えます。
 
+置いたあとは続けて `sysfail doctor --build` を実行し、ゲーム用イメージをビルドしてから動作環境を確かめます（初回のみ 5〜20 分・約 4GB）。ビルドや確認で問題が出ても、置いた sysfail コマンドはそのまま使えます。表示された対処を済ませてから `sysfail doctor --build` をやり直してください。ビルドを後回しにするときは `sh install.sh --no-build` と実行します。
+
 ### 手で取得する場合
 
 上の 2 つが使えない場合の手順です。手順 1・2 を必ずこの順で行い、両方とも通ったときだけ手順 4 に進んでください。
 
 ```bash
-TAG=v1.1.0
+TAG=v1.2.3
 BASE=https://github.com/takuho0115/sysfail/releases/download/$TAG
 curl -fsSLO "$BASE/sysfail-darwin-arm64"
 curl -fsSLO "$BASE/SHA256SUMS"

@@ -2,7 +2,7 @@
 
 ## はじめての遊び方
 
-まず `sysfail doctor` で、動作環境がそろっているか確かめてください（[困ったとき](troubleshooting/index.md)も参照）。準備ができたら、レベル 1 から始めましょう。
+まず `sysfail doctor --build` で、ゲーム用イメージをビルドして動作環境を確かめてください（初回のみ 5〜20 分・約 4GB。install.sh や `sysfail.exe install` で入れた場合は済んでいるので不要です）。手早く確かめるだけなら `sysfail doctor`、コンテナを使った詳しい確認もするなら `sysfail doctor --full` を実行します（[困ったとき](troubleshooting/index.md)も参照）。準備ができたら、レベル 1 から始めましょう。
 
 ```bash
 sysfail 1        # レベル 1 から始める

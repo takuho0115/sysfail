@@ -28,17 +28,19 @@ sysfail は、サーバー障害の対応をターミナルで練習するゲー
 [動作環境](https://takuho0115.github.io/sysfail/ja/requirements/)を満たした Linux か WSL2 で、次の手順で入れて、遊び始めます。Windows と macOS の手順はドキュメントサイトを見てください。
 
 ```bash
-TAG=v1.1.0          # 入れたいバージョン
-ARCH=amd64          # ARM の端末では arm64
+TAG=v1.2.3   # 入れたいバージョン
 BASE=https://github.com/takuho0115/sysfail/releases/download/$TAG
-wget "$BASE/sysfail-linux-$ARCH" "$BASE/LICENSE.md" "$BASE/SHA256SUMS" "$BASE/SHA256SUMS.sigstore.json"
-# ここで配布物が本物か確かめる（下の「配布物の検証」を参照）
-chmod +x "sysfail-linux-$ARCH"
-sudo mv "sysfail-linux-$ARCH" /usr/local/bin/sysfail
+curl -fsSLO "$BASE/install.sh"
+curl -fsSLO "$BASE/SHA256SUMS"
+curl -fsSLO "$BASE/SHA256SUMS.sigstore.json"
+# ここで SHA256SUMS の署名と install.sh のハッシュを確かめる（cosign が必要。手順は Linux / WSL2 のページを参照）
+less install.sh   # 中身を読んでから実行する
+sh install.sh     # 確かめてから ~/.local/bin に置き、ゲーム用イメージをビルドする
 
-sysfail doctor   # 動作環境がそろっているか確かめる
-sysfail 1        # レベル 1 から始める
+sysfail 1         # レベル 1 から始める
 ```
+
+install.sh は、sysfail を置いたあとに `sysfail doctor --build` を実行し、ゲーム用イメージのビルドと動作環境の確認まで行います（初回のみ 5〜20 分・ディスク約 4GB）。ビルドに失敗しても sysfail コマンドは置かれたままなので、表示された対処を済ませてから `sysfail doctor --build` をやり直してください。ビルドを後回しにするときは `sh install.sh --no-build` と実行します。手でファイルを置く手順は [Linux / WSL2](https://takuho0115.github.io/sysfail/ja/install/linux/) にあります。
 
 <a id="配布物の検証必須"></a>
 

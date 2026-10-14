@@ -6,7 +6,7 @@ Releases の各バージョンには、次の 10 ファイルが添付されて�
 |---|---|
 | `sysfail-linux-amd64` / `sysfail-linux-arm64` | Linux 用の実行ファイル（一般的な PC は amd64、ARM の端末は arm64） |
 | `sysfail-darwin-arm64` | macOS（Apple Silicon）用の実行ファイル（検証中のプレビュー） |
-| `install.sh` | macOS 用のインストールスクリプト |
+| `install.sh` | Linux（amd64・arm64）と macOS 用のインストールスクリプト（取得したファイルを確かめてから置き、続けてゲーム用イメージをビルドします。Linux は v1.2.3 以降） |
 | `sysfail-windows-amd64.exe` | Windows 用ランチャー（同じバージョンの `sysfail-linux-amd64` と組で使います） |
 | `THIRD_PARTY_NOTICES.txt` | 実行ファイルに組み込んだ他者のソフトウェアの著作権表示とライセンス文 |
 | `LICENSE.md` | 利用条件 |

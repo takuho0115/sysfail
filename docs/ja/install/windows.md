@@ -23,7 +23,7 @@ Docker Desktop の WSL 連携でも、ディストリビューションの中か
 
 2. 確かめた exe の名前を `sysfail.exe` に変え、Windows の好きなフォルダに置いて、ダブルクリックします。
 
-3. WSL2 に Linux 版が入っていなければ、ディストリビューション名、root 権限で置くこと、置き場所（`/usr/local/bin/sysfail`）、入れるバージョンを示した確認が表示されます。`yes` と入力すると Linux 版を入れ、そのままゲームが始まります。
+3. WSL2 に Linux 版が入っていなければ、ディストリビューション名、root 権限で置くこと、置き場所（`/usr/local/bin/sysfail`）、入れるバージョンを示した確認が表示されます。`yes` と入力すると Linux 版を入れ、続けてゲーム用イメージをビルドしてから（初回のみ 5〜20 分・約 4GB）、ゲームが始まります。
 
 2 回目からは、確認なしでゲームが始まります。新しいバージョンの `sysfail.exe` をダブルクリックしたときは、「vX から vY に更新します」という確認が出ます。更新するときは、新しい exe も手順 1 で確かめてから使ってください。
 
@@ -42,10 +42,12 @@ Docker Desktop の WSL 連携でも、ディストリビューションの中か
 自動で入らなかったときや、確認を出さずに入れたいときは、`sysfail.exe` を置いたフォルダで PowerShell から実行します。
 
 ```powershell
-.\sysfail.exe install         # Linux 版を入れる・更新する（--yes を付けると確認を省きます）
+.\sysfail.exe install         # Linux 版を入れる・更新する。続けてゲーム用イメージをビルドする（--yes を付けると確認を省きます）
 .\sysfail.exe doctor          # 動作環境を確かめる
 .\sysfail.exe uninstall       # 入れた Linux 版を消す
 ```
+
+`install` は Linux 版を置いたあと、WSL の中で `sysfail doctor --build` を実行し、ゲーム用イメージのビルドと動作環境の確認まで行います。ビルドに失敗しても Linux 版は入ったままです。表示された対処を済ませてから、`.\sysfail.exe doctor --build` をやり直してください。
 
 `uninstall` が消すのは、入れた Linux 版のファイル 1 つだけです。クリア状況などの記録や Docker のイメージは残ります。
 
@@ -56,7 +58,7 @@ Docker Desktop の WSL 連携でも、ディストリビューションの中か
 1. ディストリビューションの中で、下のコマンドで必要なファイルをダウンロードします。[配布物が本物か確かめる](../verify.md)の手順（`ARCH=amd64`）で、Linux 版と Windows 版の 2 ファイルとも `OK` になることを確かめてください。
 
    ```bash
-   TAG=v1.2.2
+   TAG=v1.2.3
    BASE=https://github.com/takuho0115/sysfail/releases/download/$TAG
    wget "$BASE/sysfail-linux-amd64" "$BASE/sysfail-windows-amd64.exe" "$BASE/SHA256SUMS" "$BASE/SHA256SUMS.sigstore.json"
    ```
