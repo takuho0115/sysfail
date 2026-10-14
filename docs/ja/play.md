@@ -2,7 +2,7 @@
 
 ## はじめての遊び方
 
-まず `sysfail doctor` で、動作環境がそろっているか確かめてください（[困ったとき](troubleshooting.md)も参照）。準備ができたら、レベル 1 から始めましょう。
+まず `sysfail doctor` で、動作環境がそろっているか確かめてください（[困ったとき](troubleshooting/index.md)も参照）。準備ができたら、レベル 1 から始めましょう。
 
 ```bash
 sysfail 1        # レベル 1 から始める

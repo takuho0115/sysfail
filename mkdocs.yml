@@ -67,7 +67,27 @@ nav:
           - macOS（Apple Silicon）: ja/install/macos.md
       - 配布物が本物か確かめる: ja/verify.md
       - 遊び方: ja/play.md
-      - 困ったとき: ja/troubleshooting.md
+      - 困ったとき:
+          - ja/troubleshooting/index.md
+          - ja/troubleshooting/pf-01.md
+          - ja/troubleshooting/pf-02.md
+          - ja/troubleshooting/pf-03.md
+          - ja/troubleshooting/pf-04.md
+          - ja/troubleshooting/pf-05.md
+          - ja/troubleshooting/pf-06.md
+          - ja/troubleshooting/pf-07.md
+          - ja/troubleshooting/pf-08.md
+          - ja/troubleshooting/pf-09.md
+          - ja/troubleshooting/pf-10.md
+          - ja/troubleshooting/pf-11.md
+          - ja/troubleshooting/pf-12.md
+          - ja/troubleshooting/pf-13.md
+          - ja/troubleshooting/pf-14.md
+          - ja/troubleshooting/pf-15.md
+          - ja/troubleshooting/pf-16.md
+          - ja/troubleshooting/pf-17.md
+          - ja/troubleshooting/pf-18.md
+          - ja/troubleshooting/pf-19.md
       - レベル別ガイド: ja/guides/index.md
       - 自作ステージの作り方:
           - ja/custom-levels/index.md
@@ -85,5 +105,26 @@ nav:
           - 用語: ja/custom-levels/12-glossary.md
   - English:
       - en/index.md
+      - Troubleshooting:
+          - en/troubleshooting/index.md
+          - en/troubleshooting/pf-01.md
+          - en/troubleshooting/pf-02.md
+          - en/troubleshooting/pf-03.md
+          - en/troubleshooting/pf-04.md
+          - en/troubleshooting/pf-05.md
+          - en/troubleshooting/pf-06.md
+          - en/troubleshooting/pf-07.md
+          - en/troubleshooting/pf-08.md
+          - en/troubleshooting/pf-09.md
+          - en/troubleshooting/pf-10.md
+          - en/troubleshooting/pf-11.md
+          - en/troubleshooting/pf-12.md
+          - en/troubleshooting/pf-13.md
+          - en/troubleshooting/pf-14.md
+          - en/troubleshooting/pf-15.md
+          - en/troubleshooting/pf-16.md
+          - en/troubleshooting/pf-17.md
+          - en/troubleshooting/pf-18.md
+          - en/troubleshooting/pf-19.md
       - Level guides: en/guides/index.md
       - Custom levels (Japanese only): ja/custom-levels/index.md
