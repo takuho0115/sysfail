@@ -17,12 +17,46 @@ Docker Desktop の WSL 連携でも、ディストリビューションの中か
 
 ## 入れ方
 
-`sysfail.exe` には、同じバージョンの `sysfail-linux-amd64` の SHA-256 が埋め込まれています。起動のたびにこれを照合し、一致しなければ起動しません。2 つは必ず同じバージョンのものを使い、片方を更新したらもう片方も入れ替えてください。
+`sysfail.exe` には、同じバージョンの Linux 版（`sysfail-linux-amd64`）とその SHA-256 の値が入っています。初めてダブルクリックしたときに、この Linux 版を WSL2 の中に入れます。ネットワークからは取得しません。起動のたびに SHA-256 を照合し、一致しなければ起動しません。
 
-1. ディストリビューションの中で 2 ファイルをダウンロードします。[配布物が本物か確かめる](../verify.md)の手順（`ARCH=amd64`）で、2 ファイルとも `OK` になることを確かめてください。
+1. Windows のブラウザで、[Releases](https://github.com/takuho0115/sysfail/releases) から同じバージョンの `sysfail-windows-amd64.exe`・`SHA256SUMS`・`SHA256SUMS.sigstore.json` を同じフォルダにダウンロードします。**exe を実行する前に**、[配布物が本物か確かめる](../verify.md)の手順で `SHA256SUMS` の署名を確かめてから、PowerShell で `Get-FileHash .\sysfail-windows-amd64.exe -Algorithm SHA256` を実行して、その値を `SHA256SUMS` の `sysfail-windows-amd64.exe` の行と照合してください。
+
+2. 確かめた exe の名前を `sysfail.exe` に変え、Windows の好きなフォルダに置いて、ダブルクリックします。
+
+3. WSL2 に Linux 版が入っていなければ、ディストリビューション名、root 権限で置くこと、置き場所（`/usr/local/bin/sysfail`）、入れるバージョンを示した確認が表示されます。`yes` と入力すると Linux 版を入れ、そのままゲームが始まります。
+
+2 回目からは、確認なしでゲームが始まります。新しいバージョンの `sysfail.exe` をダブルクリックしたときは、「vX から vY に更新します」という確認が出ます。更新するときは、新しい exe も手順 1 で確かめてから使ってください。
+
+自動で入れたり更新したりするのは、引数を付けずに起動したときだけです（`--distro`・`--console` だけを付けた場合も含みます）。次の場合は何も変えずに止まり、`sysfail.exe install` の実行を案内します。
+
+- レベル番号や `doctor` などの引数を付けて起動したとき
+- `--linux-path` を指定したとき
+- 同じか、より新しいバージョンが入っているとき
+- 入っているファイルを確かめられないとき、または確かめた結果に問題があるとき
+- ゲームのプレイ中のとき（`.\sysfail.exe stop` で止めてから起動し直してください）
+
+エラーで止まったときは、`sysfail.exe` が「Enter キーを押すと閉じます」と表示し、画面を開いたままにします。
+
+### 手動で入れる・消す
+
+自動で入らなかったときや、確認を出さずに入れたいときは、`sysfail.exe` を置いたフォルダで PowerShell から実行します。
+
+```powershell
+.\sysfail.exe install         # Linux 版を入れる・更新する（--yes を付けると確認を省きます）
+.\sysfail.exe doctor          # 動作環境を確かめる
+.\sysfail.exe uninstall       # 入れた Linux 版を消す
+```
+
+`uninstall` が消すのは、入れた Linux 版のファイル 1 つだけです。クリア状況などの記録や Docker のイメージは残ります。
+
+### Linux 版を自分で置く（上級者向け）
+
+`sysfail.exe install` が使えない環境では、ディストリビューションの中に Linux 版を自分で置くこともできます。`sysfail.exe` と Linux 版は必ず同じバージョンのものを使い、片方を更新したらもう片方も入れ替えてください。
+
+1. ディストリビューションの中で、下のコマンドで必要なファイルをダウンロードします。[配布物が本物か確かめる](../verify.md)の手順（`ARCH=amd64`）で、Linux 版と Windows 版の 2 ファイルとも `OK` になることを確かめてください。
 
    ```bash
-   TAG=v1.1.0
+   TAG=v1.2.2
    BASE=https://github.com/takuho0115/sysfail/releases/download/$TAG
    wget "$BASE/sysfail-linux-amd64" "$BASE/sysfail-windows-amd64.exe" "$BASE/SHA256SUMS" "$BASE/SHA256SUMS.sigstore.json"
    ```
@@ -43,7 +77,6 @@ Docker Desktop の WSL 連携でも、ディストリビューションの中か
    cp sysfail-windows-amd64.exe "/mnt/c/Users/<ユーザー名>/sysfail/sysfail.exe"
    ```
 
-   Windows のブラウザで直接ダウンロードした場合は、PowerShell で `Get-FileHash .\sysfail.exe -Algorithm SHA256` を実行し、その値が署名を確かめた `SHA256SUMS` の `sysfail-windows-amd64.exe` の行と一致することを確かめてください。
 
 ## 使い方
 
@@ -69,7 +102,7 @@ Docker Desktop の WSL 連携でも、ディストリビューションの中か
 `sysfail.exe` にはコード署名（Windows が発行元を確認するための署名）がありません。
 
 - 初回の起動で SmartScreen の「Windows によって PC が保護されました」が出たら、「詳細情報」を押してから「実行」を押します。ただし、上の手順でハッシュを確かめたファイルだけを実行してください。
-- セキュリティソフトが `sysfail.exe` を隔離・削除したり、0 バイトのファイルに置き換えたりすることがあります。その場合は置いたフォルダをスキャンの対象から外し、ハッシュを確かめ直したファイルを置き直してください。セキュリティソフトの窓口に誤検知として申告することもできます。
+- セキュリティソフトが `sysfail.exe` を隔離・削除したり、0 バイトのファイルに置き換えたりすることがあります。その場合は、手元の `sysfail.exe` で `Get-FileHash` を実行し、署名を確かめた `SHA256SUMS` の行と照合してください。一致しなければ使わずに削除し、Releases から取り直してください。一致した場合は誤検知なので、セキュリティソフトの窓口に申告し、定義の更新を待ってください。待てないときは、「Linux 版を自分で置く」の手順 1・2 で Linux 版を置けば、WSL の中で `sysfail` を直接実行して遊べます。会社などが管理している PC では、管理者に相談してください。
 
 ## Windows での制限
 
