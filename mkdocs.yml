@@ -67,6 +67,7 @@ nav:
           - macOS（Apple Silicon）: ja/install/macos.md
       - 配布物が本物か確かめる: ja/verify.md
       - 遊び方: ja/play.md
+      - ライセンス: ja/licenses.md
       - 困ったとき:
           - ja/troubleshooting/index.md
           - ja/troubleshooting/pf-01.md
@@ -128,3 +129,4 @@ nav:
           - en/troubleshooting/pf-19.md
       - Level guides: en/guides/index.md
       - Custom levels (Japanese only): ja/custom-levels/index.md
+      - Licenses: en/licenses.md

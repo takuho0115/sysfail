@@ -67,3 +67,12 @@ sysfail の著作権は作者が持っています（All rights reserved）。
 正式な条文は [LICENSE.md](LICENSE.md) にあります。
 
 実行ファイルに組み込んだ他者のソフトウェアの著作権表示とライセンス文は、各 Release に添付の `THIRD_PARTY_NOTICES.txt` にあります。
+
+### ゲーム用イメージに入るソフトウェアのソース
+
+ghcr.io で公開するゲーム用イメージ（`ghcr.io/takuho0115/sysfail-el9`、`ghcr.io/takuho0115/sysfail-toolbox`）は Rocky Linux 9 のイメージをもとにしていて、GPL のように、ソースコードの提供を条件とするライセンスのパッケージも含まれます。これらのソースは、Rocky Linux が公開しているソース RPM から入手できます。
+
+- 現在の Rocky Linux 9：<https://dl.rockylinux.org/pub/rocky/9/>（`BaseOS/source/tree/` と `AppStream/source/tree/` の下）
+- 以前のマイナーバージョン：<https://dl.rockylinux.org/vault/rocky/>
+
+イメージに入っているパッケージの一覧は `docker run --rm --entrypoint rpm <イメージ> -qa` で表示できます。詳しくは[ライセンス](https://takuho0115.github.io/sysfail/ja/licenses/)のページを見てください。
