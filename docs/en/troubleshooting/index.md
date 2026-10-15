@@ -6,7 +6,7 @@
 
 - `[OK]` means fine, `[!!]` is a warning (the game still starts), and `[NG]` means a requirement for starting is not met.
 - A line with a problem shows a one-line remedy and the URL of the item's help page ("More"). The steps and command examples are on that page. Offline, the one-line remedy tells you what to fix.
-- By default, `sysfail doctor` skips the container-based checks (the isolation test and the daemon-side kernel checks). Run `sysfail doctor --full` for a detailed check. `sysfail doctor --build` first builds any missing game images and then runs the same checks as `--full` (first time only: 5 to 20 minutes, about 4 GB; if the docker data area has less than 6 GB free, it skips the build and shows how to free space).
+- `sysfail doctor` starts check containers and runs every check, including the isolation test and the kernel checks on the machine running the docker daemon (up to about 2 minutes overall). `sysfail doctor --build` first builds any missing game images and then runs the same checks (first time only: 5 to 20 minutes, about 4 GB; if the docker data area has less than 6 GB free, it skips the build and shows how to free space).
 - For scripts, the exit code is 3 if there is at least one `[NG]`, otherwise 0.
 
 ## doctor items {#doctor-items}

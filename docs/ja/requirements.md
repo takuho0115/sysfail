@@ -7,7 +7,7 @@
 - **docker compose**: 複数のコンテナをまとめて起動する Docker の追加機能です。v2 プラグインの 2.24 以上が必要です（古い v1 には対応していません）
 - **tmux**: ターミナルの画面を分割するソフトです。3.2 以上が必要です
 
-Windows では、WSL2 の中で遊びます。Windows のターミナルから起動できるランチャー（`sysfail.exe`）も用意しています（[Windows](install/windows.md) を参照）。WSL2 のカーネルによっては、`sysfail doctor` に「確認していないカーネル」と注記が出ます。これは作者が動作を確かめたカーネルの一覧に載っていないという意味です。
+Windows では、WSL2 の中で遊びます。Windows のターミナルから起動できるランチャー（`sysfail.exe`）も用意しています（[Windows](install/windows.md) を参照）。WSL2 のカーネルによっては、`sysfail doctor` に「確認していないカーネル」と表示されます。これは作者が動作を確かめたカーネルの一覧に載っていないという意味です。
 
 macOS（Apple Silicon）版は、まだ検証中のプレビューです（[macOS](install/macos.md) を参照）。
 
