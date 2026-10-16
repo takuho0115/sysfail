@@ -6,7 +6,7 @@
 
 - `[OK]` means fine, `[!!]` is a warning (the game still starts), and `[NG]` means a requirement for starting is not met.
 - A line with a problem shows a one-line remedy and the URL of the item's help page ("More"). The steps and command examples are on that page. Offline, the one-line remedy tells you what to fix.
-- `sysfail doctor` starts check containers and runs every check, including the isolation test and the kernel checks on the machine running the docker daemon (up to about 2 minutes overall). `sysfail doctor --build` first builds any missing game images and then runs the same checks (first time only: 5 to 20 minutes, about 4 GB; if the docker data area has less than 6 GB free, it skips the build and shows how to free space).
+- `sysfail doctor` starts check containers and runs every check, including the isolation test and the kernel checks on the machine running the docker daemon (up to about 2 minutes overall). `sysfail doctor --build` first pulls any missing game images from ghcr.io and then runs the same checks (first time only: about 450 MB to download; if the docker data area has less than 6 GB free, it skips the pull and shows how to free space). With images/ passed through `--assets-dir`, it builds them locally instead (5 to 20 minutes, about 4 GB).
 - For scripts, the exit code is 3 if there is at least one `[NG]`, otherwise 0.
 
 ## doctor items {#doctor-items}
